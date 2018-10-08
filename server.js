@@ -12,7 +12,7 @@ var multer = require('multer');
 var uploadedFileName = '';
 var storage = multer.diskStorage({
   destination: function(req, file, cb){
-    cb(null, './public/images');
+    cb(null, 'public/images');
   },
   filename: function(req, file, cb){
   	uploadedFileName = Date.now() + '.' + file.originalname;
@@ -24,7 +24,7 @@ var upload = multer({ storage: storage });
 app.post('/', upload.single('upload'), (req, res, next) => {
 	//console.log(uploadedFileName);
 
-	var dimensions = sizeOf('./public/images/' + uploadedFileName);
+	var dimensions = sizeOf('public/images/' + uploadedFileName);
 	//console.log(dimensions.width, dimensions.height);	
 	
 	var qrtxt = encodeURI( req.body.txt);
