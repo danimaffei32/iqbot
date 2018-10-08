@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#parent{
+		padding: 5px;
+		background-size: cover;	
+		display: inline-block;
+		}
+
+		#child{
+		width: 50px;
+		height: 50px;
+		}		
+	</style>
+	<script type="text/javascript" src="./js/dom-to-image.js"></script>
+</head>
+<body>	
+	<div id="parent"><div id="child"></div></div>
+	<br />
+	<button onclick="btn_click()">存檔</button> <button onclick="btn2_click()">首頁</button>
+</body>
+	<script type="text/javascript">
+		function getQueryStringValue (key) {  
+	    	return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
+	    }
+
+        var pic1 = getQueryStringValue("pic1");
+        var pic2 = getQueryStringValue("pic2");
+        var pic1_width = getQueryStringValue("width");
+        var pic1_height = getQueryStringValue("height");
+
+        // console.log(pic1);
+        // console.log(pic2);
+
+        var gurl = 'https://chart.apis.google.com/chart?cht=qr&chs=50x50&chld=L%7C2&chl=' + encodeURI(pic2);
+
+        document.getElementById("parent").style.width = (pic1_width-10) + 'px';
+        document.getElementById("parent").style.height = (pic1_height-10) + 'px';
+        document.getElementById("parent").style.background = "url('./images/" + pic1 + "')";
+        document.getElementById("child").style.background = "url('" + gurl + "')";
+
+        function btn_click(){
+			domtoimage.toJpeg(document.getElementById('parent'), { quality: 1 })
+			    .then(function (dataUrl) {
+			        var link = document.createElement('a');
+			        link.download = 'my-image.jpeg';
+			        link.href = dataUrl;
+			        link.click();
+			    });
+        }
+
+        function btn2_click(){
+        	window.location = "./";
+        }
+	</script>	
+</html>
