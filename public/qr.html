@@ -14,12 +14,14 @@
 			height: 50px;
 		}		
 	</style>
-	<script type="text/javascript" src="./js/dom-to-image.js"></script>
+	<script type="text/javascript" src="js/dom-to-image.js"></script>
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
 </head>
 <body>	
 	<div id="parent"><div id="child"></div></div>
 	<br />
-	<button onclick="btn_click()">存檔</button> <button onclick="btn2_click()">首頁</button>
+	<button class="button-primary" onclick="btn_click()">存檔</button> <button onclick="btn2_click()">首頁</button>
 </body>
 	<script type="text/javascript">
 		function getQueryStringValue (key) {  
@@ -35,7 +37,7 @@
 
 		document.getElementById("parent").style.width = (pic1_width-10) + 'px';
 		document.getElementById("parent").style.height = (pic1_height-10) + 'px';
-		document.getElementById("parent").style.background = "url('./images/" + pic1 + "')";
+		document.getElementById("parent").style.background = "url('/" + pic1 + "')";
 		document.getElementById("child").style.background = "url('" + gurl + "')";
 
 		function btn_click(){
@@ -49,7 +51,7 @@
 		}
 
 		function btn2_click(){
-			window.location = "./";
+			window.location = "/";
 		}
 	</script>	
 </html>
