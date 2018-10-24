@@ -22,6 +22,9 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 app.post('/', upload.single('upload'), (req, res, next) => {
+  if (!req.body.txt) {
+    return res.redirect('/');
+  }
 	//console.log(uploadedFileName);
 
 	var dimensions = sizeOf('public/' + uploadedFileName);
